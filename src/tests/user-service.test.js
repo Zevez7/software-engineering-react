@@ -114,19 +114,37 @@ describe("findAllUsers", () => {
   // setup data before test
   beforeAll(() =>
     // insert several known users
-    usernames.map((username) =>
+    {
       createUser({
-        username,
-        password: `${username}123`,
-        email: `${username}@stooges.com`,
-      })
-    )
+        username: "larry",
+        password: `larry123`,
+        email: `larry@stooges.com`,
+      });
+      createUser({
+        username: "curley",
+        password: `curley123`,
+        email: `curley@stooges.com`,
+      });
+
+      return createUser({
+        username: "moe",
+        password: `moe123`,
+        email: `moe@stooges.com`,
+      });
+    }
   );
 
   // clean up after ourselves
-  afterAll(() =>
-    // delete the users we inserted
-    usernames.map((username) => deleteUsersByUsername(username))
+  afterAll(
+    () =>
+      // delete the users we inserted
+      {
+        deleteUsersByUsername("larry");
+        deleteUsersByUsername("curley");
+        return deleteUsersByUsername("moe");
+      }
+
+    // usernames.map((username) => deleteUsersByUsername(username))
   );
 
   test("can retrieve all users from REST API", async () => {
