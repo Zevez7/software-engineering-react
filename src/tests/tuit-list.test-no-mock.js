@@ -9,28 +9,6 @@ import axios from "axios";
 import Tuits from "../components/tuits";
 import { UserList } from "../components/profile/user-List";
 
-const MOCKED_USERS = ["alice", "bob", "charlie"];
-
-const MOCKED_TUITS = ["alice's tuit", "bob's tuit", "charlie's tuit"];
-
-const tuitsArray = MOCKED_USERS.map((username, index) => {
-  return {
-    _id: Math.random() * 100,
-    postedBy: { username: username },
-    tuit: MOCKED_TUITS[index],
-    image: "perseverance.jpg",
-    youtube: null,
-    avatarLogo: "nasa-logo.jpg",
-    published: "Dec 25, 2021",
-    imageOverlay: null,
-    stats: {
-      replies: 123,
-      retuits: 234,
-      likes: 345,
-    },
-  };
-});
-
 describe("tuit list renders static tuit array", () => {
   // sample user to insert
   const nasa = {
