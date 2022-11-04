@@ -151,6 +151,7 @@ describe("findAllUsers", () => {
     // retrieve all the users
     const users = await findAllUsers();
 
+    // console.log(users);
     // there should be a minimum number of users
     expect(users.length).toBeGreaterThanOrEqual(usernames.length);
 
@@ -167,4 +168,17 @@ describe("findAllUsers", () => {
       expect(user.email).toEqual(`${username}@stooges.com`);
     });
   });
+});
+
+test("user list renders async", async () => {
+  const users = await findAllUsers();
+  expect(users.length).toBeGreaterThanOrEqual(0);
+
+  // render(
+  //   <HashRouter>
+  //     <UserList users={users} />
+  //   </HashRouter>
+  // );
+  // const linkElement = screen.getByText(/NASA/i);
+  // expect(linkElement).toBeInTheDocument();
 });
