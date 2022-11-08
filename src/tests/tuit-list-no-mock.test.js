@@ -8,37 +8,39 @@ import {
 import axios from "axios";
 import Tuits from "../components/tuits";
 import { UserList } from "../components/profile/user-List";
+import { deleteUsersByUsername } from "../services/users-service";
 
 describe("tuit list renders static tuit array", () => {
   // sample user to insert
   const nasa = {
-    _id: "63577431cd4eab25f6a5660f",
-    postedBy: { username: "NASA" },
-    tuit: "The eagle has landed",
+    tuit: "nasatuits",
+    postedBy: "63577431cd4eab25f6a5660f",
   };
 
   // // setup test before running test
   beforeAll(() => {
     // remove any/all tuit to make sure we create it in the test
-    return deleteTuit(nasa._id);
+
+    return deleteTuit(nasa.postedBy);
   });
 
   // clean up after test runs
   afterAll(() => {
-    // remove any data we created
-    return deleteTuit(nasa._id);
+    // remove any data created
+    return deleteTuit(nasa.postedBy);
   });
 
   test("user list renders async", async () => {
-    await createTuit(nasa);
+    const createNasaTuit = await createTuit(nasa);
 
-    const users = await findAllTuits();
+    const allTuits = await findAllTuits();
+
     render(
       <HashRouter>
-        <UserList users={users} />
+        <Tuits tuits={allTuits} />
       </HashRouter>
     );
-    const linkElement = screen.getByText(/NASA/i);
+    const linkElement = screen.getByText(/nasatuits/i);
     expect(linkElement).toBeInTheDocument();
   });
 });

@@ -52,7 +52,6 @@ test("tuit list renders mocked", async () => {
   const response = await findAllTuits();
   const tuits = response.tuits;
 
-  console.log(tuits);
   render(
     <HashRouter>
       <Tuits tuits={tuits} />

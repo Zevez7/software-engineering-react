@@ -50,14 +50,15 @@ describe("can delete tuit with REST API", () => {
   // // setup test before running test
   beforeAll(() => {
     // remove any/all users to make sure we create it in the test
-    return createTuit(newTuits);
+    return deleteTuit(newTuits.postedBy);
   });
   // clean up after test runs
   afterAll(() => {
     // remove any data we created
     return deleteTuit(newTuits.postedBy);
   });
-  test("can delete tuit wtih REST API", async () => {
+  test("can delete tuit with REST API", async () => {
+    await createTuit(newTuits);
     // delete a tuit by their user id. Assumes tuit already exists
     const status = await deleteTuit(newTuits.postedBy);
     // verify we deleted at least one user by their username
