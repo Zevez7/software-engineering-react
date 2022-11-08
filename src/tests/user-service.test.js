@@ -7,7 +7,11 @@ import {
   findAllUsers,
   findUserById,
 } from "../services/users-service";
-
+/**
+ * Test create user
+ * @param  {string} "createUser" name of the test
+ * @param  {function} function to be called
+ * */
 describe("createUser", () => {
   // sample user to insert
   const ripley = {
@@ -16,18 +20,29 @@ describe("createUser", () => {
     email: "ellenripley@aliens.com",
   };
 
-  // // setup test before running test
+  /**
+   * Setup before running test
+   * @param  {function} function to be called
+   */
   beforeAll(() => {
     // remove any/all users to make sure we create it in the test
     return deleteUsersByUsername(ripley.username);
   });
 
-  // clean up after test runs
+  /**
+   * Setup after running test
+   * @param  {function} function to be called
+   */
   afterAll(() => {
     // remove any data we created
     return deleteUsersByUsername(ripley.username);
   });
 
+  /**
+   * Test creating a new user with rest api
+   * @param  {string} "caninsertnewuserswithRESTAPI" name of the test
+   * @param  {function} function to be called
+   */
   test("can insert new users with REST API", async () => {
     // insert new user in the database
     const newUser = await createUser(ripley);
@@ -39,6 +54,11 @@ describe("createUser", () => {
   });
 });
 
+/**
+ * Test delete user by user name
+ * @param  {string} "deleteUsersByUsername" name of the test
+ * @param  {function} function to be called
+ */
 describe("deleteUsersByUsername", () => {
   // sample user to delete
   const sowell = {
@@ -47,18 +67,29 @@ describe("deleteUsersByUsername", () => {
     email: "compromise@solutions.com",
   };
 
-  // setup the tests before verification
+  /**
+   * Setup before running test
+   * @param  {function} function to be called
+   */
   beforeAll(() => {
     // insert the sample user we then try to remove
     return createUser(sowell);
   });
 
-  // clean up after test runs
+  /**
+   * Setup after running test
+   * @param  {function} function to be called
+   */
   afterAll(() => {
     // remove any data we created
     return deleteUsersByUsername(sowell.username);
   });
 
+  /**
+   * Test can delete user from REST API by username
+   * @param  {string} "candeleteusersfromRESTAPIbyusername" name of the test
+   * @param  {function} function to be called
+   */
   test("can delete users from REST API by username", async () => {
     // delete a user by their username. Assumes user already exists
     const status = await deleteUsersByUsername(sowell.username);
@@ -68,6 +99,11 @@ describe("deleteUsersByUsername", () => {
   });
 });
 
+/**
+ * Test find user by id
+ * @param  {string} "findUserById" find user by id
+ * @param  {function} function to be called
+ */
 describe("findUserById", () => {
   // sample user we want to retrieve
   const adam = {
@@ -76,18 +112,29 @@ describe("findUserById", () => {
     email: "wealth@nations.com",
   };
 
-  // setup before running test
+  /**
+   * Setup before running test
+   * @param  {function} function to be called
+   */
   beforeAll(() => {
     // clean up before the test making sure the user doesn't already exist
     return deleteUsersByUsername(adam.username);
   });
 
-  // clean up after ourselves
+  /**
+   * Setup after running test
+   * @param  {function} function to be called
+   */
   afterAll(() => {
     // remove any data we inserted
     return deleteUsersByUsername(adam.username);
   });
 
+  /**
+   * Test to find user by user id
+   * @param  {string}"canretrieveuserfromRESTAPIbyprimarykey" name of the test
+   * @param  {function} function to be called
+   */
   test("can retrieve user from REST API by primary key", async () => {
     // insert the user in the database
     const newUser = await createUser(adam);
@@ -106,12 +153,19 @@ describe("findUserById", () => {
     expect(existingUser.email).toEqual(adam.email);
   });
 });
-
+/**
+ * test find all user
+ * @param  {string} "findAllUsers" name of the test
+ * @param  {function} function to be called
+ */
 describe("findAllUsers", () => {
   // sample users we'll insert to then retrieve
   const usernames = ["larry", "curley", "moe"];
 
-  // setup data before test
+  /**
+   * Setup before running test
+   * @param  {function} function to be called
+   */
   beforeAll(() =>
     // insert several known users
     {
@@ -134,19 +188,23 @@ describe("findAllUsers", () => {
     }
   );
 
-  // clean up after ourselves
-  afterAll(
-    () =>
-      // delete the users we inserted
-      {
-        deleteUsersByUsername("larry");
-        deleteUsersByUsername("curley");
-        return deleteUsersByUsername("moe");
-      }
-
-    // usernames.map((username) => deleteUsersByUsername(username))
+  /**
+   * Setup after running test
+   * @param  {function} function to be called
+   */
+  afterAll(() =>
+    // delete the users we inserted
+    {
+      deleteUsersByUsername("larry");
+      deleteUsersByUsername("curley");
+      return deleteUsersByUsername("moe");
+    }
   );
-
+  /**
+   * Test to find all user
+   * @param  {string} "canretrieveallusersfromRESTAPI" name of the test
+   * @param  {function} function to be called
+   */
   test("can retrieve all users from REST API", async () => {
     // retrieve all the users
     const users = await findAllUsers();
@@ -168,17 +226,4 @@ describe("findAllUsers", () => {
       expect(user.email).toEqual(`${username}@stooges.com`);
     });
   });
-});
-
-test("user list renders async", async () => {
-  const users = await findAllUsers();
-  expect(users.length).toBeGreaterThanOrEqual(0);
-
-  // render(
-  //   <HashRouter>
-  //     <UserList users={users} />
-  //   </HashRouter>
-  // );
-  // const linkElement = screen.getByText(/NASA/i);
-  // expect(linkElement).toBeInTheDocument();
 });

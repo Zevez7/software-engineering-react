@@ -1,3 +1,6 @@
+/**
+ * @file test for user list without axios mock
+ */
 import { UserList } from "../components/profile/user-List";
 import { screen, render } from "@testing-library/react";
 import { HashRouter } from "react-router-dom";
@@ -7,6 +10,11 @@ import {
   findAllUsers,
 } from "../services/users-service";
 
+/**
+ * Test for list render with no axios mox
+ * @param  {string} "userlistrendersasyn" name of the test
+ * @param  {function} function to be called for testing
+ */
 describe("user list renders asyn", () => {
   // sample user to insert
   const nasa = {
@@ -15,18 +23,29 @@ describe("user list renders asyn", () => {
     email: "NASA@aliens.com",
   };
 
-  // // setup test before running test
+  /**
+   * Setup before running test
+   * @param  {function} function to be called
+   */
   beforeAll(() => {
     // remove any/all users to make sure we create it in the test
     return deleteUsersByUsername(nasa.username);
   });
 
-  // clean up after test runs
+  /**
+   * Setup after running test
+   * @param  {function} function to be called
+   */
   afterAll(() => {
     // remove any data we created
     return deleteUsersByUsername(nasa.username);
   });
 
+  /**
+   * Test user list rendering with data from the database
+   * @param  {string} "userlistrendersasync" name of the test
+   * @param  {function} function to be called
+   */
   test("user list renders async", async () => {
     const createNewUser = await createUser(nasa);
 
