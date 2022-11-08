@@ -28,7 +28,7 @@ describe("user list renders asyn", () => {
   });
 
   test("user list renders async", async () => {
-    await createUser(nasa);
+    const createNewUser = await createUser(nasa);
 
     const users = await findAllUsers();
     render(

@@ -10,7 +10,7 @@ import Tuits from "../components/tuits";
 import { UserList } from "../components/profile/user-List";
 import { deleteUsersByUsername } from "../services/users-service";
 
-describe("tuit list renders static tuit array", () => {
+describe("tuit list renders async", () => {
   // sample user to insert
   const nasa = {
     tuit: "nasatuits",
