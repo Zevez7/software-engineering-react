@@ -13,7 +13,8 @@ function Navigation() {
     { label: "Bookmarks", icon: "fa-bookmark", path: "/bookmarks" },
     { label: "Lists", icon: "fa-list", path: "/lists" },
     { label: "Profile", icon: "fa-user", path: "/profile" },
-    { label: "Signup", icon: "fa-sign-in", path: "/signup" },
+    { label: "Signup", icon: "fa-square-arrow-up", path: "/signup" },
+    { label: "Login", icon: "fa-airplay", path: "/login" },
     { label: "More", icon: "fa-circle-ellipsis", path: "/more" },
   ];
   return (
