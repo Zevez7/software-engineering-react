@@ -15,7 +15,7 @@ const MyTuits = () => {
   return (
     <Box>
       <Typography variant="h4">MyTuits</Typography>
-      <Tuits tuits={tuits} deleteTuit={deleteTuit} />
+      <Tuits tuits={tuits} deleteTuit={deleteTuit} refreshTuits={findMyTuits} />
     </Box>
   );
 };

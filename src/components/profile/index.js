@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 import MyTuits from "./my-tuits";
 import * as service from "../../services/auth-service";
+import { Box, Button } from "@mui/material";
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -28,6 +30,12 @@ const Profile = () => {
       <h4>{profile.username}</h4>
       <h6>@{profile.username}</h6>
       <button onClick={logout}>Logout</button>
+
+      <Box my={3}>
+        <Button variant="contained" component={RouterLink} to="mytuits">
+          My Tuits
+        </Button>
+      </Box>
 
       <Routes>
         <Route path="mytuits" element={<MyTuits />} />

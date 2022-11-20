@@ -7,6 +7,7 @@ const Tuits = ({ tuits = [], deleteTuit, refreshTuits }) => {
       .userTogglesTuitLikes("me", tuit._id)
       .then(refreshTuits)
       .catch((e) => alert(e));
+
   return (
     <div>
       <ul>
