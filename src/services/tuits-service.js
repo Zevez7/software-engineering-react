@@ -4,9 +4,9 @@
 import axios from "axios";
 // change this to point to your server on Heroku
 
-const BASE_URL = "https://engineer-software-dat-a4.herokuapp.com";
+// const BASE_URL = "https://engineer-software-dat-a4.herokuapp.com";
 // const BASE_URL = process.env.REACT_APP_BASE_URL;
-// const BASE_URL = "http://localhost:5000";
+const BASE_URL = "http://localhost:5000";
 const TUITS_API = `${BASE_URL}/tuits`;
 // const TUITS_API = `${BASE_URL}/api/tuits`;
 const USERS_API = `${BASE_URL}/users`;
