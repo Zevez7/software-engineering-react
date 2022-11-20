@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import * as service from "../../services/tuits-service";
-
+import { Box, Typography, Button } from "@mui/material";
 import Tuits from "../tuits";
 
 const MyTuits = () => {
-
   const [tuits, setTuits] = useState([]);
 
   const findMyTuits = () =>
@@ -12,7 +11,12 @@ const MyTuits = () => {
   useEffect(findMyTuits, []);
 
   const deleteTuit = (tid) => service.deleteTuit(tid).then(findMyTuits);
-  return <Tuits tuits={tuits} deleteTuit={deleteTuit} />;
-  
+
+  return (
+    <Box>
+      <Typography variant="h4">MyTuits</Typography>
+      <Tuits tuits={tuits} deleteTuit={deleteTuit} />
+    </Box>
+  );
 };
 export default MyTuits;

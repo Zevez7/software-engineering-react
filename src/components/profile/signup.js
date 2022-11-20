@@ -1,6 +1,8 @@
 import { useState } from "react";
 import * as service from "../../services/auth-service";
 import { useNavigate } from "react-router-dom";
+import { Box, Typography, Button } from "@mui/material";
+
 const Signup = () => {
   const [newUser, setNewUser] = useState({});
   const navigate = useNavigate();
@@ -11,28 +13,30 @@ const Signup = () => {
       .catch((e) => alert(e));
   return (
     <div>
-      <h1>Signup</h1>
-      <div style={{ padding: 3 }}>
-        <div>user name</div>
+      <Typography variant="h4">Signup</Typography>
+      <Box pt={2}>
+        <Typography>Username</Typography>
         <input
           onChange={(e) => setNewUser({ ...newUser, username: e.target.value })}
         />
-      </div>
-      <div style={{ padding: 3 }}>
-        <div>password</div>
+      </Box>
+      <Box pt={2}>
+        <Typography>Password</Typography>
         <input
           onChange={(e) => setNewUser({ ...newUser, password: e.target.value })}
         />
-      </div>
-      <div style={{ padding: 3 }}>
-        <div>email</div>
+      </Box>
+      <Box pt={2}>
+        <Typography>Email</Typography>
         <input
           onChange={(e) => setNewUser({ ...newUser, email: e.target.value })}
         />
-      </div>
-      <div style={{ padding: 3 }}>
-        <button onClick={signup}>Signup</button>
-      </div>
+      </Box>
+      <Box pt={2}>
+        <Button variant="outlined" onClick={signup}>
+          Signup
+        </Button>
+      </Box>
     </div>
   );
 };

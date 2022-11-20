@@ -1,38 +1,50 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import * as service from "../../services/auth-service";
-
+import { Box, Typography, Button } from "@mui/material";
+import Signup from "./signup";
 const Login = () => {
   const [loginUser, setLoginUser] = useState({});
   const navigate = useNavigate();
-  const login = () =>
-    service
+  const login = () => {
+    console.log(loginUser);
+    return service
       .login(loginUser)
-      .then((user) => navigate("/profile/mytuits"))
+      .then((user) => {
+        console.log(user);
+        navigate("/profile/mytuits");
+      })
       .catch((e) => alert(e));
+  };
   return (
     <div>
-      <h1>Login</h1>
+      <Typography variant="h4">Login</Typography>
 
-      <div style={{ padding: 3 }}>
-        <div>User name</div>
+      <Box pt={3}>
+        <Typography>Username</Typography>
         <input
           onChange={(e) =>
             setLoginUser({ ...loginUser, username: e.target.value })
           }
         />
-      </div>
-      <div style={{ padding: 3 }}>
-        <div>User name</div>
+      </Box>
+      <Box pt={3}>
+        <Typography>Password</Typography>
         <input
           onChange={(e) =>
             setLoginUser({ ...loginUser, password: e.target.value })
           }
         />
-      </div>
-      <div style={{ padding: 3 }}>
-        <button onClick={login}>Login</button>
-      </div>
+      </Box>
+      <Box pt={3}>
+        <Button variant="outlined" onClick={login}>
+          Login
+        </Button>
+      </Box>
+
+      <Box pt={3}>
+        <Signup />
+      </Box>
     </div>
   );
 };

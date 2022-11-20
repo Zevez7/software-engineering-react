@@ -4,8 +4,8 @@
 import axios from "axios";
 // change this to point to your server on Heroku
 
-// const BASE_URL = "https://engineer-software-dat-a3.herokuapp.com";
-const BASE_URL = process.env.REACT_APP_BASE_URL;
+const BASE_URL = "https://engineer-software-dat-a4.herokuapp.com";
+// const BASE_URL = process.env.REACT_APP_BASE_URL;
 // const BASE_URL = "http://localhost:5000";
 const TUITS_API = `${BASE_URL}/tuits`;
 // const TUITS_API = `${BASE_URL}/api/tuits`;
@@ -29,7 +29,7 @@ export const createTuit = (tuit) =>
  * return newly created tuit
  */
 export const createTuitByUser = (uid, tuit) =>
-  axios.post(`${TUITS_API}/${uid}`, tuit).then((response) => response.data);
+  api.post(`${TUITS_API}/users/${uid}`, tuit).then((response) => response.data);
 /**
  * Find all tuits
  * return tuit in array
@@ -41,7 +41,7 @@ export const findAllTuits = () =>
  * @param  {string} uid user id
  */
 export const findTuitsByUser = (uid) =>
-  axios.get(`${TUITS_API}/users/${uid}`).then((response) => response.data);
+  api.get(`${TUITS_API}/users/${uid}`).then((response) => response.data);
 /**
  * Find tuit by tuit id
  * @param  {string} tid tuit id

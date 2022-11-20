@@ -6,7 +6,7 @@ import * as service from "../../services/auth-service";
 const Profile = () => {
   const navigate = useNavigate();
   const [profile, setProfile] = useState({});
-  
+
   useEffect(() => {
     const fetchProfile = async () => {
       try {
@@ -30,7 +30,7 @@ const Profile = () => {
       <button onClick={logout}>Logout</button>
 
       <Routes>
-        <Route path="/mytuits" element={<MyTuits />} />
+        <Route path="mytuits" element={<MyTuits />} />
         {/* <Route path="/tuits-and-replies" element={<TuitsAndReplies />} />
       <Route path="/media" element={<Media />} />
       <Route path="/mylikes" element={<MyLikes />} /> */}
