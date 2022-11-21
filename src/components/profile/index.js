@@ -5,6 +5,7 @@ import MyTuits from "./my-tuits";
 import * as service from "../../services/auth-service";
 import { Box, Button } from "@mui/material";
 import MyLikes from "./my-likes";
+import MyDislikes from "./my-dislikes";
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -37,7 +38,7 @@ const Profile = () => {
           variant="contained"
           component={RouterLink}
           to="mytuits"
-          sx={{ mx: 3 }}
+          sx={{ mx: 2 }}
         >
           My Tuits
         </Button>
@@ -46,9 +47,18 @@ const Profile = () => {
           variant="contained"
           component={RouterLink}
           to="mylikes"
-          sx={{ mx: 3 }}
+          sx={{ mx: 2 }}
         >
           My Likes
+        </Button>
+
+        <Button
+          variant="contained"
+          component={RouterLink}
+          to="mydislikes"
+          sx={{ mx: 2 }}
+        >
+          My Dislikes
         </Button>
       </Box>
 
@@ -57,6 +67,7 @@ const Profile = () => {
         {/* <Route path="/tuits-and-replies" element={<TuitsAndReplies />} /> */}
         {/* <Route path="/media" element={<Media />} /> */}
         <Route path="mylikes" element={<MyLikes />} />
+        <Route path="mydislikes" element={<MyDislikes />} />
       </Routes>
     </div>
   );
