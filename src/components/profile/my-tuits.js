@@ -13,10 +13,12 @@ const MyTuits = () => {
   const deleteTuit = (tid) => service.deleteTuit(tid).then(findMyTuits);
 
   return (
-    <Box>
-      <Typography variant="h4">MyTuits</Typography>
+    <div>
+      <Box py={3}>
+        <Typography variant="h4">MyTuits</Typography>
+      </Box>
       <Tuits tuits={tuits} deleteTuit={deleteTuit} refreshTuits={findMyTuits} />
-    </Box>
+    </div>
   );
 };
 export default MyTuits;
