@@ -40,7 +40,7 @@ export const userDislikesTuit = (uid, tid) =>
  */
 export const userUnDislikesTuit = (uid, tid) =>
   api
-    .delete(`${USERS_API}/${uid}/dislikes/${tid}`)
+    .delete(`${USERS_API}/${uid}/undislikes/${tid}`)
     .then((response) => response.data);
 
 /**
