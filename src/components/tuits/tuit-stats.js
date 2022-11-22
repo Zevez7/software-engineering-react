@@ -22,10 +22,14 @@ const TuitStats = ({ tuit, likeTuit, dislikeTuit, findUserLikesTuit }) => {
 
   if (tuit.stats && tuit.stats.dislikes) {
     if (tuit.stats.dislikes > 0) {
-      dislikeValueDisplayLogic = <ThumbDownAlt sx={{ color: "red", mx: 1 }} />;
+      dislikeValueDisplayLogic = (
+        <ThumbDownAlt id="red" sx={{ color: "red", mx: 1 }} />
+      );
     }
   } else if (tuit.stats && tuit.stats.dislikes <= 0) {
-    dislikeValueDisplayLogic = <ThumbDownAlt sx={{ color: "gray", mx: 1 }} />;
+    dislikeValueDisplayLogic = (
+      <ThumbDownAlt id="gray" sx={{ color: "gray", mx: 1 }} />
+    );
   }
   return (
     <div className="row mt-2">

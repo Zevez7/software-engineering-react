@@ -8,6 +8,10 @@ import {
   userUnDislikesTuit,
   userTogglesTuitDislike,
 } from "../../services/dislike-service";
+import {
+  findUserLikesTuit,
+  userTogglesTuitLikes,
+} from "../../services/like-service";
 import { createTuit, deleteTuit } from "../../services/tuits-service";
 import {
   createUser,
@@ -104,7 +108,7 @@ describe("Test find all tuits disliked by user", () => {
   });
 
   /**
-   * Test to create a dislike
+   * Test find all tuits disliked by ripley user
    */
   test("find all tuits disliked by ripley user", async () => {
     userRipley = await createUser(ripley);
@@ -131,5 +135,106 @@ describe("Test find all tuits disliked by user", () => {
     const tuiterDisliked = await findAllTuitsDislikedByUser(userRipleyid);
 
     expect(tuiterDisliked.length).toEqual(2);
+  });
+});
+/**
+ * Test userTogglesTuitDislike
+ */
+describe("Test to toggle Tuit Dislike with user", () => {
+  let Tuit1;
+  let userRipley;
+  // let userBob;
+  let createdTuit1;
+
+  const ripley = {
+    username: "ellenripley",
+    password: "lv426",
+    email: "ellenripley@aliens.com",
+  };
+
+  // const Bob = {
+  //   username: "bobman",
+  //   password: "bobman",
+  //   email: "bobman@aliens.com",
+  // };
+
+  /**
+   * Setup before running test
+   */
+  beforeAll(() => {
+    // deleteUsersByUsername(userBob.username);
+    return deleteUsersByUsername(ripley.username);
+  });
+
+  afterAll(() => {
+    // remove any data we created
+    userUnDislikesTuit(userRipley._id, createdTuit1._id);
+    // userUnLikesTuit(userRipley._id, createdTuit1._id);
+    // userUnDislikesTuit(userBob._id, tuit1._id);
+    // deleteUsersByUsername(userBob.username);
+    return deleteUsersByUsername(ripley.username);
+  });
+
+  /**
+   * Test to toggle dislike for a user when tuit does not have a like
+   */
+  test("toggle dislike for a user does not have a like", async () => {
+    userRipley = await createUser(ripley);
+    // userBob = await createUser(Bob);
+
+    const userRipleyid = userRipley._id;
+    // const userBobid = userBob._id;
+
+    Tuit1 = {
+      tuit: "tuiter toggle dislike no like",
+      postedBy: userRipleyid,
+    };
+
+    createdTuit1 = await createTuit(Tuit1);
+
+    await userTogglesTuitDislike(userRipleyid, createdTuit1._id);
+    const tuiterDisliked = await findAllTuitsDislikedByUser(userRipleyid);
+    expect(tuiterDisliked.length).toEqual(1);
+
+    await userTogglesTuitDislike(userRipleyid, createdTuit1._id);
+    const tuiterDisliked2 = await findAllTuitsDislikedByUser(userRipleyid);
+    expect(tuiterDisliked2.length).toEqual(0);
+
+    deleteTuit(Tuit1.postedBy);
+  });
+
+  /**
+   * Test to toggle dislike for a user when tuit does have a like
+   */
+  test("toggle dislike for a user when tuit does have a like", async () => {
+    userRipley = await createUser(ripley);
+    // userBob = await createUser(Bob);
+
+    const userRipleyid = userRipley._id;
+    // const userBobid = userBob._id;
+
+    Tuit1 = {
+      tuit: "tuiter toggle dislike with like",
+      postedBy: userRipleyid,
+    };
+
+    createdTuit1 = await createTuit(Tuit1);
+    await userTogglesTuitLikes(userRipleyid, createdTuit1._id);
+    const LikedTuitTrue = await findUserLikesTuit(
+      userRipleyid,
+      createdTuit1._id
+    );
+    expect(LikedTuitTrue.tuit).toEqual(createdTuit1._id);
+
+    await userTogglesTuitDislike(userRipleyid, createdTuit1._id);
+    const tuiterDisliked = await findAllTuitsDislikedByUser(userRipleyid);
+    expect(tuiterDisliked.length).toEqual(1);
+
+    const LikedTuitFalse = await findUserLikesTuit(
+      userRipleyid,
+      createdTuit1._id
+    );
+    expect(LikedTuitFalse).toEqual("");
+    deleteTuit(Tuit1.postedBy);
   });
 });
