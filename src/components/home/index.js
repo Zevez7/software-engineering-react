@@ -1,3 +1,11 @@
+import {
+  BarChart,
+  CalendarMonth,
+  GifBoxOutlined,
+  Map,
+  Portrait,
+  SentimentSatisfiedAlt,
+} from "@mui/icons-material";
 import React from "react";
 import Tuits from "../tuits";
 import tuitsArray from "../tuits/tuits-data.json";
@@ -22,12 +30,12 @@ const Home = () => {
             ></textarea>
             <div className="row">
               <div className="col-10 ttr-font-size-150pc text-primary">
-                <i className="fas fa-portrait me-3"></i>
-                <i className="far fa-gif me-3"></i>
-                <i className="far fa-bar-chart me-3"></i>
-                <i className="far fa-face-smile me-3"></i>
-                <i className="far fa-calendar me-3"></i>
-                <i className="far fa-map-location me-3"></i>
+                <Portrait sx={{ m: 1 }} />
+                <GifBoxOutlined sx={{ m: 1 }} />
+                <BarChart sx={{ m: 1 }} />
+                <SentimentSatisfiedAlt sx={{ m: 1 }} />
+                <CalendarMonth sx={{ m: 1 }} />
+                <Map sx={{ m: 1 }} />
               </div>
               <div className="col-2">
                 <a

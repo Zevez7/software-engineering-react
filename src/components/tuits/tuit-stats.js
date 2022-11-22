@@ -1,3 +1,10 @@
+import {
+  ChatBubbleOutline,
+  Inbox,
+  Repeat,
+  ThumbDownAlt,
+  ThumbUpAlt,
+} from "@mui/icons-material";
 import React, { useEffect, useState } from "react";
 
 const TuitStats = ({ tuit, likeTuit, dislikeTuit, findUserLikesTuit }) => {
@@ -5,40 +12,29 @@ const TuitStats = ({ tuit, likeTuit, dislikeTuit, findUserLikesTuit }) => {
 
   if (tuit.stats && tuit.stats.likes) {
     if (tuit.stats.likes > 0) {
-      likeValueDisplayLogic = (
-        <i className="fa-solid fa-thumbs-up me-1" style={{ color: "blue" }}></i>
-      );
+      likeValueDisplayLogic = <ThumbUpAlt sx={{ color: "blue", mx: 1 }} />;
     }
   } else {
-    likeValueDisplayLogic = (
-      <i className="fa-solid fa-thumbs-up me-1" style={{ color: "gray" }}></i>
-    );
+    likeValueDisplayLogic = <ThumbUpAlt sx={{ color: "gray", mx: 1 }} />;
   }
 
   let dislikeValueDisplayLogic;
 
   if (tuit.stats && tuit.stats.dislikes) {
     if (tuit.stats.dislikes > 0) {
-      dislikeValueDisplayLogic = (
-        <i
-          className="fa-solid fa-thumbs-down me-1"
-          style={{ color: "red" }}
-        ></i>
-      );
+      dislikeValueDisplayLogic = <ThumbDownAlt sx={{ color: "red", mx: 1 }} />;
     }
   } else if (tuit.stats && tuit.stats.dislikes <= 0) {
-    dislikeValueDisplayLogic = (
-      <i className="fa-solid fa-thumbs-down me-1" style={{ color: "gray" }}></i>
-    );
+    dislikeValueDisplayLogic = <ThumbDownAlt sx={{ color: "gray", mx: 1 }} />;
   }
   return (
     <div className="row mt-2">
       <div className="col">
-        <i className="far fa-message me-1"></i>
+        <ChatBubbleOutline sx={{ mx: 1 }} />
         {tuit.stats && tuit.stats.replies}
       </div>
       <div className="col">
-        <i className="far fa-retweet me-1"></i>
+        <Repeat sx={{ mx: 1 }} />
         {tuit.stats && tuit.stats.retuits}
       </div>
       <div className="col">
@@ -55,7 +51,7 @@ const TuitStats = ({ tuit, likeTuit, dislikeTuit, findUserLikesTuit }) => {
         </span>
       </div>
       <div className="col">
-        <i className="far fa-inbox-out"></i>
+        <Inbox sx={{ mx: 1 }} />
       </div>
     </div>
   );

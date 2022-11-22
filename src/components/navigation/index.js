@@ -1,20 +1,36 @@
 import React from "react";
 import "./navigation.css";
 import { useLocation, Link } from "react-router-dom";
+import {
+  Home,
+  Tag,
+  Notifications,
+  Email,
+  Bookmark,
+  List,
+  Person,
+  AssignmentInd,
+  MoreHoriz,
+  AddBox,
+} from "@mui/icons-material/";
 
 function Navigation() {
   const { pathname } = useLocation();
   const links = [
-    { label: "Tuiter", icon: "fa-square-t", path: "/tuiter" },
-    { label: "Home", icon: "fa-home", path: "/home" },
-    { label: "Explore", icon: "fa-hashtag", path: "/explore" },
-    { label: "Notifications", icon: "fa-bell", path: "/notifications" },
-    { label: "Messages", icon: "fa-envelope", path: "/messages" },
-    { label: "Bookmarks", icon: "fa-bookmark", path: "/bookmarks" },
-    { label: "Lists", icon: "fa-list", path: "/lists" },
-    { label: "Profile", icon: "fa-user", path: "/profile" },
-    { label: "Signup", icon: "fa-square-arrow-up", path: "/signup" },
-    { label: "More", icon: "fa-circle-ellipsis", path: "/more" },
+    { label: "Tuiter", icon: <AddBox />, path: "/tuiter" },
+    { label: "Home", icon: <Home />, path: "/home" },
+    { label: "Explore", icon: <Tag />, path: "/explore" },
+    {
+      label: "Notifications",
+      icon: <Notifications />,
+      path: "/notifications",
+    },
+    { label: "Messages", icon: <Email />, path: "/messages" },
+    { label: "Bookmarks", icon: <Bookmark />, path: "/bookmarks" },
+    { label: "Lists", icon: <List />, path: "/lists" },
+    { label: "Profile", icon: <Person />, path: "/profile" },
+    { label: "Signup", icon: <AssignmentInd />, path: "/signup" },
+    { label: "More", icon: <MoreHoriz />, path: "/more" },
   ];
   return (
     <div className="ttr-navigation">
@@ -31,7 +47,7 @@ function Navigation() {
                 id={link.label}
                 className="text-decoration-none text-black"
               >
-                <i className={`fa ${link.icon} text-center`}></i>
+                {link.icon}
                 <span className="ttr-label">{link.label}</span>
               </Link>
             </li>
