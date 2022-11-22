@@ -13,7 +13,7 @@ const Tuits = ({ tuits = [], deleteTuit, refreshTuits }) => {
         const user = await service.profile();
         setProfile(user);
       } catch (e) {
-        console.error(e);
+        // console.error(e);
       }
     };
     fetchProfile();
