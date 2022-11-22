@@ -75,8 +75,6 @@ describe("can delete a dislike with REST API", () => {
  * Test find all tuits disliked by user
  */
 describe("Test find all tuits disliked by user", () => {
-  const uid = "63577431cd4eab25f6a5660f";
-  const tid = "637957cc394ef49bceae9247";
   let newTuits1;
   let newTuits2;
   let userRipley;
@@ -108,7 +106,7 @@ describe("Test find all tuits disliked by user", () => {
   /**
    * Test to create a dislike
    */
-  test("Test find all tuits disliked by user", async () => {
+  test("find all tuits disliked by ripley user", async () => {
     userRipley = await createUser(ripley);
 
     const userRipleyid = userRipley._id;
