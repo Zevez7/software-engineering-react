@@ -9,6 +9,7 @@ import {
   findAllTuitsDislikedByUser,
   userDislikesTuit,
   userTogglesTuitDislike,
+  userUnDislikesTuit,
 } from "../../services/dislike-service";
 import { createTuit, deleteTuit } from "../../services/tuits-service";
 import {
@@ -23,16 +24,20 @@ describe("can create a dislike with REST API", () => {
   let ripley;
   let Tuit1;
   let createdTuit1;
+  let createdTuit1Id;
+  let userRipleyid;
 
   afterAll(() => {
     deleteTuit(Tuit1.postedBy);
+    userUnDislikesTuit(userRipleyid, createdTuit1Id);
+
     return deleteUsersByUsername(ripley.username);
   });
   /**
    * Test dislike button
    */
 
-  test("test dislike button click", async () => {
+  test("dislike button click", async () => {
     //create the user and
 
     ripley = {
@@ -42,7 +47,7 @@ describe("can create a dislike with REST API", () => {
     };
 
     const userRipley = await createUser(ripley);
-    const userRipleyid = userRipley._id;
+    userRipleyid = userRipley._id;
 
     Tuit1 = {
       tuit: "tuiter testing1",
@@ -56,7 +61,8 @@ describe("can create a dislike with REST API", () => {
     };
 
     createdTuit1 = await createTuit(Tuit1);
-    await userTogglesTuitDislike(userRipleyid, createdTuit1._id);
+    createdTuit1Id = createdTuit1._id;
+    await userTogglesTuitDislike(userRipleyid, createdTuit1Id);
     const array = await findAllTuitsDislikedByUser(userRipleyid);
 
     const lastItem = array.pop();
