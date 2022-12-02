@@ -8,9 +8,10 @@ import axios from "axios";
 // const BASE_URL = process.env.REACT_APP_BASE_URL;
 const BASE_URL = "http://localhost:5000";
 const TUITS_API = `${BASE_URL}/tuits`;
-// const TUITS_API = `${BASE_URL}/api/tuits`;
-const USERS_API = `${BASE_URL}/users`;
 
+/**
+ * Create axios with credentials
+ */
 const api = axios.create({
   withCredentials: true,
 });

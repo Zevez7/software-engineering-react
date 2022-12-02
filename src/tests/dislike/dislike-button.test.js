@@ -7,7 +7,6 @@ import { HashRouter } from "react-router-dom";
 import TuitStats from "../../components/tuits/tuit-stats";
 import {
   findAllTuitsDislikedByUser,
-  userDislikesTuit,
   userTogglesTuitDislike,
   userUnDislikesTuit,
 } from "../../services/dislike-service";

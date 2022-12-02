@@ -152,12 +152,6 @@ describe("Test to toggle Tuit Dislike with user", () => {
     email: "ellenripley@aliens.com",
   };
 
-  // const Bob = {
-  //   username: "bobman",
-  //   password: "bobman",
-  //   email: "bobman@aliens.com",
-  // };
-
   /**
    * Setup before running test
    */
@@ -169,9 +163,6 @@ describe("Test to toggle Tuit Dislike with user", () => {
   afterAll(() => {
     // remove any data we created
     userUnDislikesTuit(userRipley._id, createdTuit1._id);
-    // userUnLikesTuit(userRipley._id, createdTuit1._id);
-    // userUnDislikesTuit(userBob._id, tuit1._id);
-    // deleteUsersByUsername(userBob.username);
     return deleteUsersByUsername(ripley.username);
   });
 
