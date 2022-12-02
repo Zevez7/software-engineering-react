@@ -51,7 +51,6 @@ describe("tuit dislike rendering", () => {
    */
   afterAll(() => {
     // remove any data created
-    console.log(Tuit1);
     deleteTuit(Tuit1.postedBy);
     deleteTuit(Tuit2.postedBy);
     userUnDislikesTuit(userRipleyId, createdTuit1Id);
