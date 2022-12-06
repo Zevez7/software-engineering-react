@@ -3,7 +3,7 @@ import TuitStats from "./tuit-stats";
 import TuitImage from "./tuit-image";
 import TuitVideo from "./tuit-video";
 import { useNavigate, Link } from "react-router-dom";
-import { Box, Typography, Button } from "@mui/material";
+import { Box, Typography, Button, Avatar } from "@mui/material";
 
 const Tuit = ({ tuit, likeTuit, dislikeTuit, findUserLikesTuit }) => {
   const daysOld = (tuit) => {
@@ -33,12 +33,15 @@ const Tuit = ({ tuit, likeTuit, dislikeTuit, findUserLikesTuit }) => {
     <li className="p-2 ttr-tuit list-group-item d-flex rounded-0">
       <div className="pe-2">
         {tuit.postedBy && (
-          <div className="parent-image">
-            <img
-              src={`../images/${tuit.postedBy.username}.jpg`}
-              className="ttr-tuit-avatar-logo rounded-circle"
-            />
-          </div>
+          // <div className="parent-image">
+          //   <img
+          //     src={`../images/${tuit.postedBy.username}.jpg`}
+          //     className="ttr-tuit-avatar-logo rounded-circle"
+          //   />
+          // </div>
+          <Avatar sx={{ width: 30, height: 30 }}>
+            {/* {tuit.postedBy.username.slice(0, 1)} */}
+          </Avatar>
         )}
       </div>
       <div className="w-100">
