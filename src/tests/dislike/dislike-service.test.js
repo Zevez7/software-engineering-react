@@ -132,11 +132,18 @@ describe("Test find all tuits disliked by user", () => {
     await userDislikesTuit(userRipley._id, tuit1._id);
     await userDislikesTuit(userRipley._id, tuit2._id);
 
-    const tuiterDisliked = await findAllTuitsDislikedByUser(userRipleyid);
+    let tuiterDisliked = await findAllTuitsDislikedByUser(userRipleyid);
+
+    tuiterDisliked = tuiterDisliked.filter((item) => {
+      if (item.postedBy) {
+        return item.postedBy._id === userRipleyid;
+      }
+    });
 
     expect(tuiterDisliked.length).toEqual(2);
   });
 });
+
 /**
  * Test userTogglesTuitDislike
  */
@@ -191,7 +198,7 @@ describe("Test to toggle Tuit Dislike with user", () => {
     const tuiterDisliked2 = await findAllTuitsDislikedByUser(userRipleyid);
     expect(tuiterDisliked2.length).toEqual(0);
 
-    deleteTuit(Tuit1.postedBy);
+    await deleteTuit(Tuit1.postedBy);
   });
 
   /**
@@ -218,7 +225,9 @@ describe("Test to toggle Tuit Dislike with user", () => {
     expect(LikedTuitTrue.tuit).toEqual(createdTuit1._id);
 
     await userTogglesTuitDislike(userRipleyid, createdTuit1._id);
+    console.log(userRipleyid);
     const tuiterDisliked = await findAllTuitsDislikedByUser(userRipleyid);
+    console.log(tuiterDisliked);
     expect(tuiterDisliked.length).toEqual(1);
 
     const LikedTuitFalse = await findUserLikesTuit(

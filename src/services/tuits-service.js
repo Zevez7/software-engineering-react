@@ -57,6 +57,14 @@ export const findTuitById = (tid) =>
  */
 export const deleteTuit = (uid) =>
   axios.delete(`${TUITS_API}/${uid}`).then((response) => response.data);
+
+/**
+ * Delete tuit by tuit id
+ * @param {string} tid tuit id
+ * return delete status
+ */
+export const deleteTuitById = (tid) =>
+  axios.delete(`${TUITS_API}/tuit/${tid}`).then((response) => response.data);
 /**
  * Update tuit by tuit id
  * @param {string} tid tuit id
