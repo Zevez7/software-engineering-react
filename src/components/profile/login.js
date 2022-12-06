@@ -8,11 +8,9 @@ const Login = () => {
   const [loginUser, setLoginUser] = useState({});
   const navigate = useNavigate();
   const login = () => {
-    console.log(loginUser);
     return service
       .login(loginUser)
       .then((user) => {
-        console.log(user);
         navigate("/profile/mytuits");
       })
       .catch((e) => alert(e));

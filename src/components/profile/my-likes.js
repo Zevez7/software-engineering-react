@@ -8,7 +8,6 @@ const MyLikes = () => {
   const findTuitsILike = () =>
     service.findAllTuitsLikedByUser("me").then((tuits) => setLikedTuis(tuits));
   useEffect(findTuitsILike, []);
-  console.log(likedTuits);
   return (
     <div>
       <Box py={3}>

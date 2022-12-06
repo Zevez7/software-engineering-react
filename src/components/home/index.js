@@ -33,7 +33,6 @@ const Home = () => {
   const fetchAllTuits = async () => {
     try {
       const alltuit = await tuitService.findAllTuits();
-      console.log(alltuit);
       setTuits(alltuit);
     } catch (e) {
       // navigate("/profile/login");
@@ -50,18 +49,13 @@ const Home = () => {
   });
 
   const onSubmit = async (data) => {
-    console.log(data);
     const uid = authprofile._id;
 
     const tuitCreated = await tuitService.createTuitByUser(uid, data);
-    console.log(tuitCreated);
     const alltuit = await tuitService.findAllTuits();
     setTuits(alltuit);
     reset();
   };
-
-  console.log(authprofile);
-  console.log(tuits);
 
   return (
     <div className="ttr-home">
