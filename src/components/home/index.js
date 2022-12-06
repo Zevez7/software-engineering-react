@@ -30,17 +30,16 @@ const Home = () => {
     };
     fetchProfile();
   }, []);
-
+  const fetchAllTuits = async () => {
+    try {
+      const alltuit = await tuitService.findAllTuits();
+      console.log(alltuit);
+      setTuits(alltuit);
+    } catch (e) {
+      // navigate("/profile/login");
+    }
+  };
   useEffect(() => {
-    const fetchAllTuits = async () => {
-      try {
-        const alltuit = await tuitService.findAllTuits();
-        console.log(alltuit);
-        setTuits(alltuit);
-      } catch (e) {
-        // navigate("/profile/login");
-      }
-    };
     fetchAllTuits();
   }, []);
 
@@ -103,7 +102,7 @@ const Home = () => {
               />
             </form>
             <div className="row">
-              <div className="col-10 ttr-font-size-150pc text-primary">
+              <div className="col-9 ttr-font-size-150pc text-primary">
                 <Portrait sx={{ m: 1 }} />
                 <GifBoxOutlined sx={{ m: 1 }} />
                 <BarChart sx={{ m: 1 }} />
@@ -113,7 +112,7 @@ const Home = () => {
               </div>
               <div className="col-3">
                 <Button
-                  size="large"
+                  size="small"
                   variant="contained"
                   disabled={!authprofile.username}
                   onClick={handleSubmit(onSubmit)}
@@ -125,7 +124,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <Tuits tuits={tuits} />
+      <Tuits tuits={tuits} refreshTuits={fetchAllTuits} />
     </div>
   );
 };

@@ -40,7 +40,7 @@ const Tuit = ({ tuit, likeTuit, dislikeTuit, findUserLikesTuit }) => {
           //   />
           // </div>
           <Avatar sx={{ width: 30, height: 30 }}>
-            {tuit.postedBy.username.slice(0, 1)}
+            {/* {tuit.postedBy.username.slice(0, 1)} */}
           </Avatar>
         )}
       </div>

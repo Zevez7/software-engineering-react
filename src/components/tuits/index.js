@@ -23,13 +23,13 @@ const Tuits = ({ tuits = [], deleteTuit, refreshTuits }) => {
     likesService
       .userTogglesTuitLikes("me", tuit._id)
       .then(refreshTuits)
-      .catch((e) => alert(e));
+      .catch((e) => alert(e + " please login"));
 
   const dislikeTuit = (tuit) =>
     dislikeService
       .userTogglesTuitDislike("me", tuit._id)
       .then(refreshTuits)
-      .catch((e) => alert(e));
+      .catch((e) => alert(e + " please login"));
 
   const findUserLikesTuit = (tid) =>
     likesService.findUserLikesTuit(profile._id, tid).catch((e) => alert(e));
