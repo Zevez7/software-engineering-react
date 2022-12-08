@@ -1,8 +1,56 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Tuits from "../tuits";
 import tuitsArray from "../tuits/tuits-data.json";
+import * as authService from "../../services/auth-service";
+import * as tuitService from "../../services/tuits-service";
+import { Controller, useForm } from "react-hook-form";
 
 const Home = () => {
+  const [authprofile, setAuthProfile] = useState({});
+  const [tuits, setTuits] = useState();
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const user = await authService.profile();
+        setAuthProfile(user);
+      } catch (e) {
+        // console.log("session profile not found, send to login page");
+        // navigate("/profile/login");
+      }
+    };
+    fetchProfile();
+  }, []);
+
+  const fetchAllTuits = async () => {
+    try {
+      const alltuit = await tuitService.findAllTuits();
+      setTuits(alltuit);
+      console.log(alltuit);
+    } catch (e) {
+      // navigate("/profile/login");
+    }
+  };
+  useEffect(() => {
+    fetchAllTuits();
+  }, []);
+
+  const { handleSubmit, control, reset } = useForm({
+    defaultValues: {
+      tuit: "",
+    },
+  });
+
+  console.log(tuits);
+  const onSubmit = async (data) => {
+    const uid = authprofile._id;
+
+    const tuitCreated = await tuitService.createTuitByUser(uid, data);
+    const alltuit = await tuitService.findAllTuits();
+    setTuits(alltuit);
+    reset();
+  };
+
   return (
     <div className="ttr-home">
       <div className="border border-bottom-0">

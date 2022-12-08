@@ -50,7 +50,12 @@ const Tuit = ({ tuit, likeTuit }) => {
         {tuit.tuit}
         {tuit.youtube && <TuitVideo tuit={tuit} />}
         {tuit.image && <TuitImage tuit={tuit} />}
-        <TuitStats tuit={tuit} likeTuit={likeTuit} />
+        <TuitStats
+          tuit={tuit}
+          likeTuit={likeTuit}
+          // dislikeTuit={dislikeTuit}
+          // findUserLikesTuit={findUserLikesTuit}
+        />
       </div>
     </li>
   );
