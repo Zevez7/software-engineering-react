@@ -6,8 +6,17 @@ import {
   ThumbUpAlt,
 } from "@mui/icons-material";
 import React, { useEffect, useState } from "react";
+import * as authService from "../../services/auth-service";
 
-const TuitStats = ({ tuit, likeTuit, dislikeTuit, findUserLikesTuit }) => {
+const TuitStats = ({
+  tuit,
+  likeTuit,
+  dislikeTuit,
+  findUserLikesTuit,
+  profile,
+}) => {
+  const [liked, setLiked] = useState(false);
+
   let likeValueDisplayLogic;
 
   if (tuit.stats && tuit.stats.likes) {

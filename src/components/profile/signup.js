@@ -10,7 +10,7 @@ const Signup = () => {
     service
       .signup(newUser)
       .then(() => navigate("/profile"))
-      .catch((e) => alert(e));
+      .catch((e) => console.log(e));
   return (
     <div>
       <Typography variant="h4">Signup</Typography>

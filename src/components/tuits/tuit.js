@@ -5,7 +5,7 @@ import TuitVideo from "./tuit-video";
 import { useNavigate, Link } from "react-router-dom";
 import { Box, Typography, Button, Avatar } from "@mui/material";
 
-const Tuit = ({ tuit, likeTuit, dislikeTuit, findUserLikesTuit }) => {
+const Tuit = ({ tuit, likeTuit, dislikeTuit, findUserLikesTuit, profile }) => {
   const daysOld = (tuit) => {
     const now = new Date();
     const nowMillis = now.getTime();
@@ -58,6 +58,7 @@ const Tuit = ({ tuit, likeTuit, dislikeTuit, findUserLikesTuit }) => {
           likeTuit={likeTuit}
           dislikeTuit={dislikeTuit}
           findUserLikesTuit={findUserLikesTuit}
+          profile={profile}
         />
       </div>
     </li>

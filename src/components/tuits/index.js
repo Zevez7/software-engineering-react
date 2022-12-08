@@ -32,7 +32,7 @@ const Tuits = ({ tuits = [], deleteTuit, refreshTuits }) => {
       .catch((e) => alert(e + " please login"));
 
   const findUserLikesTuit = (tid) =>
-    likesService.findUserLikesTuit(profile._id, tid).catch((e) => alert(e));
+    likesService.findUserLikesTuit(profile._id, tid);
 
   return (
     <div>
@@ -45,6 +45,7 @@ const Tuits = ({ tuits = [], deleteTuit, refreshTuits }) => {
             dislikeTuit={dislikeTuit}
             tuit={tuit}
             findUserLikesTuit={findUserLikesTuit}
+            profile={profile}
           />
         ))}
       </ul>
