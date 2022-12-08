@@ -56,7 +56,7 @@ const Tuit = ({ tuit, likeTuit, dislikeTuit, findUserLikesTuit }) => {
         <TuitStats
           tuit={tuit}
           likeTuit={likeTuit}
-          dislikeTuit={dislikeTuit}
+          // dislikeTuit={dislikeTuit}
           findUserLikesTuit={findUserLikesTuit}
         />
       </div>

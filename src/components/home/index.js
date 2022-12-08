@@ -30,10 +30,12 @@ const Home = () => {
     };
     fetchProfile();
   }, []);
+
   const fetchAllTuits = async () => {
     try {
       const alltuit = await tuitService.findAllTuits();
       setTuits(alltuit);
+      console.log(alltuit);
     } catch (e) {
       // navigate("/profile/login");
     }
@@ -48,6 +50,7 @@ const Home = () => {
     },
   });
 
+  console.log(tuits);
   const onSubmit = async (data) => {
     const uid = authprofile._id;
 
